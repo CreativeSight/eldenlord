@@ -1,0 +1,49 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Card from "../../components/Card.astro";
+import { currentPath } from "../../utils/currentPath";
+import { getData } from "../../utils/getData";
+
+export async function getStaticPaths() {
+  const data = await getData("ammos");
+
+  return data?.map(
+    ({
+      attackPower,
+      description,
+      image,
+      id,
+      location,
+      name,
+      passive,
+      type,
+    }) => ({
+      params: { id },
+      props: {
+        attackPower: attackPower,
+        description: description,
+        image: image,
+        location: location,
+        name: name,
+        passive: passive,
+        type: type,
+      },
+    })
+  );
+}
+
+const { id } = Astro.params;
+const { attackPower, description, image, location, name, passive, type } =
+  Astro.props;
+---
+
+<Layout pageTitle={name} title={name}>
+  <figure>
+    <img src={image} />
+  </figure>
+
+  Description: {description}
+  Location: {location}
+  {passive ? `Passive: ${passive}` : ""}
+  Type: {type}
+</Layout>

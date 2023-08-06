@@ -1,0 +1,56 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Card from "../../components/Card.astro";
+import { currentPath } from "../../utils/currentPath";
+import { getData } from "../../utils/getData";
+
+export async function getStaticPaths() {
+  const data = await getData("armors");
+
+  return data?.map(
+    ({
+      category,
+      description,
+      dmgNegation,
+      image,
+      id,
+      location,
+      name,
+      resistance,
+      weight,
+    }) => ({
+      params: { id },
+      props: {
+        category: category,
+        description: description,
+        dmgNegation: dmgNegation,
+        image: image,
+        location: location,
+        name: name,
+        resistance: resistance,
+        weight: weight,
+      },
+    })
+  );
+}
+
+const { id } = Astro.params;
+const {
+  category,
+  description,
+  dmgNegation,
+  image,
+  location,
+  name,
+  resistance,
+  weight,
+} = Astro.props;
+---
+
+<Layout pageTitle={name} title={name}>
+  <figure>
+    <img src={image} />
+
+    <h1>{weight}</h1>
+  </figure>
+</Layout>

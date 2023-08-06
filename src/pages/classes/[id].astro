@@ -1,0 +1,33 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Card from "../../components/Card.astro";
+import { currentPath } from "../../utils/currentPath";
+import { getData } from "../../utils/getData";
+
+export async function getStaticPaths() {
+  const data = await getData("classes");
+
+  return data?.map(({ description, image, id, name, stats }) => {
+    return {
+      params: { id },
+      props: {
+        description: description,
+        image: image,
+        name: name,
+        stats: stats,
+      },
+    };
+  });
+}
+
+const { id } = Astro.params;
+const { description, image, name, stats } = Astro.props;
+---
+
+<Layout pageTitle={name} title={name}>
+  <figure>
+    <img src={image} />
+
+    <h1>{id}: {description}</h1>
+  </figure>
+</Layout>
