@@ -8,4 +8,7 @@ export default defineConfig({
   base: "/eldenlord/",
   root: "eldenlord",
   integrations: [tailwind()],
+  experimental: {
+    assets: true,
+  },
 });
