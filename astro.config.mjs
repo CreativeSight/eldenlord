@@ -5,6 +5,6 @@ import tailwind from "@astrojs/tailwind";
 // https://astro.build/config
 export default defineConfig({
   site: "https://creativesight.github.io",
-  base: "/eldenlord",
+  base: "/eldenlord/",
   integrations: [tailwind()],
 });

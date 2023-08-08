@@ -1,1 +1,1 @@
-export const currentPath = (path: string) => path.substring(1);
+export const currentPath = (path: string) => path.split("/")[2];

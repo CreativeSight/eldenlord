@@ -6,10 +6,9 @@ interface Props {
   path: string;
 }
 
-const { data, path, title } = Astro.props;
+const { data, path } = Astro.props;
 ---
 
-<h1>{title}</h1>
 <section
   class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 gap-y-10 pl-5 pr-5 text-center"
 >

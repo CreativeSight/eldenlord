@@ -4,6 +4,7 @@ import Footer from "../components/Footer.astro";
 import GlobalStyles from "../components/GlobalStyles.astro";
 
 const { pageTitle, title } = Astro.props;
+const baseUrl = "/eldenlord/";
 
 interface Layout {
   children?: HTMLElement;
@@ -26,7 +27,7 @@ interface Layout {
   <body
     class="flex flex-col min-h-screen text-base text-yellow-400 tracking-wide"
   >
-    <Header />
+    <Header baseUrl={baseUrl} />
     <main class="flex-1 pt-10 pb-10">
       <h1
         class="first:first-letter:uppercase mb-10 text-center text-2xl md:text-4xl"

@@ -1,4 +1,6 @@
 ---
+import { baseUrl } from "../consts";
+
 interface Props {
   id: string;
   image: string;
@@ -9,8 +11,8 @@ interface Props {
 const { id, image, name, path } = Astro.props;
 ---
 
-<div class="card">
-  <a href={`/${path}/${id}`}>
+<div class="card relative z-0">
+  <a href={`${baseUrl}${path}/${id}`}>
     <figure class="h-56 mb-5 text-center overflow-hidden">
       <img
         class="inline-flex object-cover object-top h-full scale-1 hover:scale-105 transition ease-in duration-300"
