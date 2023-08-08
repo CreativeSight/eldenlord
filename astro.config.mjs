@@ -6,5 +6,6 @@ import tailwind from "@astrojs/tailwind";
 export default defineConfig({
   site: "https://creativesight.github.io",
   base: "/eldenlord/",
+  root: "eldenlord",
   integrations: [tailwind()],
 });
