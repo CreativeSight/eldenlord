@@ -5,28 +5,49 @@ import { currentPath } from "../../utils/currentPath";
 import { getData } from "../../utils/getData";
 
 type Data = {
+  cost: number;
   description: string;
-  drops: string[];
+  effects: string;
   image: string;
   id: string;
-  location: string;
+  name: string;
+  slots: number;
+  requires: Requires;
+  type: string;
+};
+
+type Requires = {
+  amount: never;
   name: string;
 };
 
 export async function getStaticPaths() {
-  const data = await getData("creatures");
+  const data = await getData("incantations");
 
   return data?.map(
-    ({ description, drops, image, id, location, name }: Data) => {
+    ({
+      cost,
+      description,
+      effects,
+      image,
+      id,
+      name,
+      slots,
+      requires,
+      type,
+    }: Data) => {
       return {
         params: { id },
         props: {
+          cost,
           description,
-          drops,
+          effects,
           image,
           id,
-          location,
           name,
+          slots,
+          requires,
+          type,
         },
       };
     }

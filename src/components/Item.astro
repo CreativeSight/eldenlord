@@ -1,0 +1,55 @@
+---
+type Props = {
+  attackPower?: string;
+  description?: string;
+  image: string;
+  name: string;
+};
+
+const { attackPower, description, image, name } = Astro.props;
+---
+
+<div
+  class="item flex flex-column md:flex-row gap-5 pl-5 pr-5 max-w-5xl mx-auto"
+>
+  <figure class="h-60 mb-5 text-center overflow-hidden">
+    <img
+      class="inline-flex object-cover object-top h-full"
+      src={image}
+      alt={name}
+      loading="lazy"
+    />
+  </figure>
+  <ul>
+    {
+      name && (
+        <li>
+          <>
+            <span>Name:</span>
+            <span>{name}</span>
+          </>
+        </li>
+      )
+    }
+    {
+      attackPower && (
+        <li>
+          <>
+            <span>AttackPower:</span>
+            <span>{attackPower}</span>
+          </>
+        </li>
+      )
+    }
+    {
+      description && (
+        <li class="flex">
+          <>
+            <span>Description:</span>
+            <span class="flex-1">{description}</span>
+          </>
+        </li>
+      )
+    }
+  </ul>
+</div>

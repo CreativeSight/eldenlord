@@ -5,45 +5,26 @@ import Layout from "../../layouts/Layout.astro";
 import { getData } from "../../utils/getData";
 
 type Data = {
-  attackPower: AttackPower;
   description: string;
-  drops: string;
   image: string;
   id: string;
   location: string;
   name: string;
-  passive: string;
-  type: string;
-};
-
-type AttackPower = {
-  amount: number;
-  name: string;
+  quote: string;
 };
 
 export async function getStaticPaths() {
-  const data = await getData("ammos");
+  const data = await getData("npcs");
 
   return data?.map(
-    ({
-      attackPower,
-      description,
-      image,
-      id,
-      location,
-      name,
-      passive,
-      type,
-    }: Data) => ({
+    ({ description, image, id, location, name, quote }: Data) => ({
       params: { id },
       props: {
-        attackPower,
         description,
         image,
         location,
         name,
-        passive,
-        type,
+        quote,
       },
     })
   );

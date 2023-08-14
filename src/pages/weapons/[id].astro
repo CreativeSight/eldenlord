@@ -5,45 +5,69 @@ import Layout from "../../layouts/Layout.astro";
 import { getData } from "../../utils/getData";
 
 type Data = {
-  attackPower: AttackPower;
+  attack: Attack;
+  category: string;
+  defence: Defence;
   description: string;
-  drops: string;
   image: string;
   id: string;
-  location: string;
   name: string;
   passive: string;
-  type: string;
+  requiredAttributes: RequiredAttributes;
+  scalesWith: ScalesWith;
+  weight: number;
 };
 
-type AttackPower = {
+type Attack = {
   amount: number;
   name: string;
 };
 
+type Defence = {
+  amount: number;
+  name: string;
+};
+
+type RequiredAttributes = {
+  amount: number;
+  name: string;
+};
+
+type ScalesWith = {
+  name: string;
+  scaling: string;
+};
+
 export async function getStaticPaths() {
-  const data = await getData("ammos");
+  const data = await getData("weapons");
 
   return data?.map(
     ({
-      attackPower,
+      attack,
+      category,
+      defence,
       description,
       image,
       id,
-      location,
       name,
       passive,
-      type,
+      requiredAttributes,
+      scalesWith,
+      weight,
     }: Data) => ({
       params: { id },
       props: {
-        attackPower,
+        attack,
+        category,
+        defence,
         description,
         image,
-        location,
+        id,
         name,
         passive,
-        type,
+        requiredAttributes,
+        scalesWith,
+        weight,
       },
     })
   );

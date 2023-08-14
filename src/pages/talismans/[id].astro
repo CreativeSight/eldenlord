@@ -1,32 +1,28 @@
 ---
+import type Card from "../../components/Card.astro";
+import Item from "../../components/Item.astro";
 import Layout from "../../layouts/Layout.astro";
 import { getData } from "../../utils/getData";
 
 type Data = {
-  affinity: string;
   description: string;
+  effects: string;
   image: string;
   id: string;
   name: string;
-  skill: string;
 };
 
 export async function getStaticPaths() {
-  const data = await getData("ashes");
+  const data = await getData("talismans");
 
-  return data?.map(
-    ({ affinity, description, image, id, name, skill }: Data) => ({
-      params: { id },
-      props: {
-        affinity,
-        description,
-        image,
-        location,
-        name,
-        skill,
-      },
-    })
-  );
+  return data?.map(({ description, image, id, name }: Data) => ({
+    params: { id },
+    props: {
+      description,
+      image,
+      name,
+    },
+  }));
 }
 ---
 

@@ -1,37 +1,38 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import Card from "../../components/Card.astro";
-import { currentPath } from "../../utils/currentPath";
 import { getData } from "../../utils/getData";
+
+type Data = {
+  description: string;
+  drops: string[];
+  healthPoints: string;
+  image: string;
+  id: string;
+  location: string;
+  name: string;
+};
 
 export async function getStaticPaths() {
   const data = await getData("bosses");
 
   return data?.map(
-    ({ description, drops, healthPoints, image, id, location, name }) => {
+    ({ description, drops, healthPoints, image, id, location, name }: Data) => {
       return {
         params: { id },
         props: {
-          description: description,
-          drops: drops,
-          healthPoints: healthPoints,
-          image: image,
-          location: location,
-          name: name,
+          description,
+          drops,
+          healthPoints,
+          image,
+          location,
+          name,
         },
       };
     }
   );
 }
-
-const { id } = Astro.params;
-const { description, drops, healthPoints, image, location, name } = Astro.props;
 ---
 
-<Layout pageTitle={name} title={name}>
-  <figure>
-    <img src={image} />
-
-    <h1>{id}: {healthPoints}</h1>
-  </figure>
+<Layout pageTitle={Astro.props.name} title={Astro.props.name}>
+  <Item {...Astro.props} />
 </Layout>

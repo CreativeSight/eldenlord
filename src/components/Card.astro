@@ -11,7 +11,7 @@ interface Props {
 const { id, image, name, path } = Astro.props;
 ---
 
-<div class="card relative z-0">
+<div class="card">
   <a href={`${baseUrl}${path}/${id}`}>
     <figure class="h-56 mb-5 text-center overflow-hidden">
       <img
