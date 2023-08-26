@@ -2,6 +2,7 @@
 import Item from "../../components/Item.astro";
 import Layout from "../../layouts/Layout.astro";
 import { getData } from "../../utils/getData";
+import type { Attack, Defence } from "../../types/types";
 
 type Data = {
   attack: Attack;
@@ -15,16 +16,6 @@ type Data = {
   requiredAttributes: RequiredAttributes;
   scalesWith: ScalesWith;
   weight: number;
-};
-
-type Attack = {
-  amount: number;
-  name: string;
-};
-
-type Defence = {
-  amount: number;
-  name: string;
 };
 
 type RequiredAttributes = {

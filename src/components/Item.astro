@@ -1,20 +1,31 @@
 ---
+import type { ItemProps } from "../types/types";
+
 type Props = {
   attackPower?: string;
+  category?: string;
+  cost?: number;
   description?: string;
+  effects?: string;
   image: string;
+  location?: string
   name: string;
+  passive?: string
+  slots?: number;
+  type?: string;
+  weight?: string;
 };
 
-const { attackPower, description, image, name } = Astro.props;
+const { attackPower, category, cost, description, effects, image, name, location, passive, slots, type,weight } =
+  Astro.props;
 ---
 
 <div
-  class="item flex flex-column md:flex-row gap-5 pl-5 pr-5 max-w-5xl mx-auto"
+  class="item flex flex-col md:flex-row gap-5 pl-5 pr-5 max-w-5xl mx-auto"
 >
-  <figure class="h-60 mb-5 text-center overflow-hidden">
+  <figure class="w-full max-w-full sm:max-w-sm mb-5 text-center overflow-hidden">
     <img
-      class="inline-flex object-cover object-top h-full"
+      class="inline-flex h-full w-full"
       src={image}
       alt={name}
       loading="lazy"
@@ -23,30 +34,110 @@ const { attackPower, description, image, name } = Astro.props;
   <ul>
     {
       name && (
-        <li>
+        <li class="flex flex-col sm:flex-row mb-2">
           <>
             <span>Name:</span>
-            <span>{name}</span>
-          </>
-        </li>
-      )
-    }
-    {
-      attackPower && (
-        <li>
-          <>
-            <span>AttackPower:</span>
-            <span>{attackPower}</span>
+            <span class="flex-1 sm:pl-2">{name}</span>
           </>
         </li>
       )
     }
     {
       description && (
-        <li class="flex">
+      <li class="flex flex-col sm:flex-row mb-2">
           <>
             <span>Description:</span>
-            <span class="flex-1">{description}</span>
+            <span class="flex-1 sm:pl-2">{description}</span>
+          </>
+        </li>
+      )
+    }
+    {
+      attackPower && (
+      <li class="flex flex-col sm:flex-row mb-2">
+          <>
+            <span>AttackPower:</span>
+            <span class="flex-1 sm:pl-2">{attackPower}</span>
+          </>
+        </li>
+      )
+    }
+    {
+      category && (
+      <li class="flex flex-col sm:flex-row mb-2">
+          <>
+            <span>Category:</span>
+            <span class="flex-1 sm:pl-2">{category}</span>
+          </>
+        </li>
+      )
+    }
+    {
+      cost && (
+        <li class="flex">
+          <>
+            <span>Cost:</span>
+            <span class="flex-1 sm:pl-2">{cost}</span>
+          </>
+        </li>
+      )
+    }
+    {
+      effects && (
+        <li class="flex">
+          <>
+            <span>Effects:</span>
+            <span class="flex-1 sm:pl-2">{effects}</span>
+          </>
+        </li>
+      )
+    }
+    {
+      location && (
+        <li class="flex">
+          <>
+            <span>Location:</span>
+            <span class="flex-1 sm:pl-2">{location}</span>
+          </>
+        </li>
+      )
+    }
+    {
+      passive && (
+      <li class="flex flex-col sm:flex-row mb-2">
+          <>
+            <span>Passive:</span>
+            <span class="flex-1 sm:pl-2">{passive}</span>
+          </>
+        </li>
+      )
+    }
+    {
+      slots && (
+      <li class="flex flex-col sm:flex-row mb-2">
+          <>
+            <span>Slots:</span>
+            <span class="flex-1 sm:pl-2">{slots}</span>
+          </>
+        </li>
+      )
+    }
+    {
+      type && (
+      <li class="flex flex-col sm:flex-row mb-2">
+          <>
+            <span>Type:</span>
+            <span class="flex-1 sm:pl-2">{type}</span>
+          </>
+        </li>
+      )
+    }
+    {
+      weight && (
+      <li class="flex flex-col sm:flex-row mb-2">
+          <>
+            <span>Weight:</span>
+            <span class="flex-1 sm:pl-2">{weight}</span>
           </>
         </li>
       )

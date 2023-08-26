@@ -19,21 +19,21 @@ interface Layout {
     <meta charset="UTF-8" />
     <meta name="description" content="Astro description" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <GlobalStyles />
   </head>
   <body
-    class="flex flex-col min-h-screen text-lg lg:text-xl text text-yellow-400 tracking-wide"
+    class="flex flex-col min-h-screen text-lg lg:text-xl text text-yellow-500 tracking-wide"
   >
     <Header baseUrl={baseUrl} />
-    <main class="flex-1 pt-10 pb-10">
-      <h1
+    <main class="flex-1 pt-10 pb-10 pl-5 pr-5">
+      {pageTitle && <h1
         class="first:first-letter:uppercase mb-10 text-center text-2xl md:text-4xl"
       >
         {pageTitle}
-      </h1>
+      </h1>}
       <slot />
     </main>
     <Footer />

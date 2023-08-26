@@ -1,12 +1,12 @@
 ---
 import { baseUrl } from "../consts";
 
-interface Props {
+type Props = {
   id: string;
   image: string;
   name: string;
   path: string;
-}
+};
 
 const { id, image, name, path } = Astro.props;
 ---

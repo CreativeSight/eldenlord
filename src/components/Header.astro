@@ -1,33 +1,15 @@
 ---
+import { Menu } from "./Menu";
 import { baseUrl } from "../consts";
 ---
 
 <header
-  class="flex items-center p-4 sticky top-0 bg-black border-b-2 border-b-yellow-600 z-50"
+  class="z-50 flex items-center p-4 sticky top-0 bg-black border-b-2 border-b-yellow-600 "
 >
   <figure class="flex flex-1">
     <a href=`${baseUrl}`
       ><img src="/eldenlord/images/logo.webp" alt="Elden Ring logo" /></a
     >
   </figure>
-  <nav class="flex justify-center items-center">
-    <ul class="flex gap-4 justify-center items-center">
-      <li><a href=`${baseUrl}`>Home</a></li>
-      <li><a href=`${baseUrl}ammos`>Ammos</a></li>
-      <li><a href=`${baseUrl}armors`>Armors</a></li>
-      <li><a href=`${baseUrl}ashes`>Ashes of war</a></li>
-      <li><a href=`${baseUrl}bosses`>Bosses</a></li>
-      <li><a href=`${baseUrl}classes`>Classes</a></li>
-      <li><a href=`${baseUrl}creatures`>Creatures</a></li>
-      <li><a href=`${baseUrl}incantations`>Incantations</a></li>
-      <li><a href=`${baseUrl}items`>Items</a></li>
-      <li><a href=`${baseUrl}locations`>Locations</a></li>
-      <li><a href=`${baseUrl}npcs`>Npcs</a></li>
-      <li><a href=`${baseUrl}shields`>Shields</a></li>
-      <li><a href=`${baseUrl}sorceries`>Sorceries</a></li>
-      <li><a href=`${baseUrl}spirits`>Spirits</a></li>
-      <li><a href=`${baseUrl}talismans`>Talismans</a></li>
-      <li><a href=`${baseUrl}weapons`>Weapons</a></li>
-    </ul>
-  </nav>
+  <Menu client:load />
 </header>
