@@ -69,7 +69,9 @@ export const Menu = () => (
     <SheetTrigger>Menu</SheetTrigger>
     <SheetContent>
       <SheetHeader className="sheet-header">
-        <SheetTitle className="mt-10 mb-10">What you want to visit?</SheetTitle>
+        <SheetTitle className="mt-10 mb-10">
+          What do you want to visit?
+        </SheetTitle>
         {nav()}
       </SheetHeader>
     </SheetContent>
