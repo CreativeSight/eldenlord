@@ -1,29 +1,79 @@
 ---
-import type { ItemProps } from "../types/types";
+import PreviousButton from "./PreviousButton.astro";
 
 type Props = {
-  attackPower?: string;
+  affinity?: string;
+  attack?: Amount[];
+  attackPower?: Amount[];
   category?: string;
   cost?: number;
+  defence?: Amount[];
   description?: string;
+  dmgNegation?: Amount[];
+  drops?: string[];
   effects?: string;
+  fpCost?: string;
+  healthPoints?: string;
+  hpCost?: string;
   image: string;
-  location?: string
+  location?: string;
   name: string;
-  passive?: string
+  quote?: string;
+  passive?: string;
+  requiredAttributes?: Amount[];
+  resistance?: Amount[];
+  requires?: Amount[];
+  scalesWith?: Scaling[];
+  skill?: number;
   slots?: number;
   type?: string;
   weight?: string;
 };
 
-const { attackPower, category, cost, description, effects, image, name, location, passive, slots, type,weight } =
-  Astro.props;
+type Amount = {
+  name: string;
+  amount: number;
+};
+
+type Scaling = {
+  name: string;
+  scaling: string;
+};
+
+const {
+  affinity,
+  attack,
+  attackPower,
+  category,
+  cost,
+  defence,
+  description,
+  dmgNegation,
+  drops,
+  effects,
+  fpCost,
+  healthPoints,
+  hpCost,
+  image,
+  name,
+  location,
+  passive,
+  quote,
+  scalesWith,
+  skill,
+  slots,
+  resistance,
+  requires,
+  requiredAttributes,
+  type,
+  weight,
+} = Astro.props;
 ---
 
-<div
-  class="item flex flex-col md:flex-row gap-5 pl-5 pr-5 max-w-5xl mx-auto"
->
-  <figure class="w-full max-w-full sm:max-w-sm mb-5 text-center overflow-hidden">
+<div class="item flex flex-col md:flex-row gap-5 max-w-7xl mx-auto">
+  <figure
+    class="self-start w-full max-w-full sm:max-w-sm sm:h-screen sm:max-h-96 text-center overflow-hidden ml-auto mr-auto"
+  >
     <img
       class="inline-flex h-full w-full"
       src={image}
@@ -31,10 +81,10 @@ const { attackPower, category, cost, description, effects, image, name, location
       loading="lazy"
     />
   </figure>
-  <ul>
+  <ul class="md:flex-1">
     {
       name && (
-        <li class="flex flex-col sm:flex-row mb-2">
+        <li class="flex flex-col sm:flex-row mb-3">
           <>
             <span>Name:</span>
             <span class="flex-1 sm:pl-2">{name}</span>
@@ -44,7 +94,7 @@ const { attackPower, category, cost, description, effects, image, name, location
     }
     {
       description && (
-      <li class="flex flex-col sm:flex-row mb-2">
+        <li class="flex flex-col sm:flex-row mb-3">
           <>
             <span>Description:</span>
             <span class="flex-1 sm:pl-2">{description}</span>
@@ -53,18 +103,54 @@ const { attackPower, category, cost, description, effects, image, name, location
       )
     }
     {
-      attackPower && (
-      <li class="flex flex-col sm:flex-row mb-2">
+      affinity && (
+        <li class="flex flex-col sm:flex-row mb-3">
           <>
-            <span>AttackPower:</span>
-            <span class="flex-1 sm:pl-2">{attackPower}</span>
+            <span>Affinity:</span>
+            <span class="flex-1 sm:pl-2">{affinity}</span>
+          </>
+        </li>
+      )
+    }
+    {
+      attack && (
+        <li class="flex flex-col sm:flex-row mb-3">
+          <>
+            <span>Attack:</span>
+            <ul class="flex-1 sm:pl-2">
+              {attack.map((attack: Amount) => (
+                <>
+                  <li>
+                    {attack.name} {attack.amount}
+                  </li>
+                </>
+              ))}
+            </ul>
+          </>
+        </li>
+      )
+    }
+    {
+      attackPower && (
+        <li class="flex flex-col sm:flex-row mb-3">
+          <>
+            <span>Attack power:</span>
+            <ul class="flex-1 sm:pl-2">
+              {attackPower.map((attackP: Amount) => (
+                <>
+                  <li>
+                    {attackP.name} {attackP.amount}
+                  </li>
+                </>
+              ))}
+            </ul>
           </>
         </li>
       )
     }
     {
       category && (
-      <li class="flex flex-col sm:flex-row mb-2">
+        <li class="flex flex-col sm:flex-row mb-3">
           <>
             <span>Category:</span>
             <span class="flex-1 sm:pl-2">{category}</span>
@@ -74,7 +160,7 @@ const { attackPower, category, cost, description, effects, image, name, location
     }
     {
       cost && (
-        <li class="flex">
+        <li class="flex flex-col sm:flex-row mb-3">
           <>
             <span>Cost:</span>
             <span class="flex-1 sm:pl-2">{cost}</span>
@@ -83,8 +169,60 @@ const { attackPower, category, cost, description, effects, image, name, location
       )
     }
     {
+      defence && (
+        <li class="flex flex-col sm:flex-row mb-3">
+          <>
+            <span>Defence:</span>
+            <ul class="flex-1 sm:pl-2">
+              {defence.map((def: Amount) => (
+                <>
+                  <li>
+                    {def.name} {def.amount}
+                  </li>
+                </>
+              ))}
+            </ul>
+          </>
+        </li>
+      )
+    }
+    {
+      dmgNegation && (
+        <li class="flex flex-col sm:flex-row mb-3">
+          <>
+            <span>Dmg negation:</span>
+            <ul class="flex-1 sm:pl-2">
+              {dmgNegation.map((dmg: Amount) => (
+                <>
+                  <li>
+                    {dmg.name} {dmg.amount}
+                  </li>
+                </>
+              ))}
+            </ul>
+          </>
+        </li>
+      )
+    }
+    {
+      drops && (
+        <li class="flex flex-col sm:flex-row mb-3">
+          <>
+            <span>Drops:</span>
+            <ul class="flex-1 sm:pl-2">
+              {drops.map((drop) => (
+                <>
+                  <li>{drop}</li>
+                </>
+              ))}
+            </ul>
+          </>
+        </li>
+      )
+    }
+    {
       effects && (
-        <li class="flex">
+        <li class="flex flex-col sm:flex-row mb-3">
           <>
             <span>Effects:</span>
             <span class="flex-1 sm:pl-2">{effects}</span>
@@ -93,8 +231,38 @@ const { attackPower, category, cost, description, effects, image, name, location
       )
     }
     {
+      fpCost && (
+        <li class="flex flex-col sm:flex-row mb-3">
+          <>
+            <span>Fp cost:</span>
+            <span class="flex-1 sm:pl-2">{fpCost}</span>
+          </>
+        </li>
+      )
+    }
+    {
+      healthPoints && (
+        <li class="flex flex-col sm:flex-row mb-3">
+          <>
+            <span>Health points:</span>
+            <span class="flex-1 sm:pl-2">{healthPoints}</span>
+          </>
+        </li>
+      )
+    }
+    {
+      hpCost && (
+        <li class="flex flex-col sm:flex-row mb-3">
+          <>
+            <span>Hp cost:</span>
+            <span class="flex-1 sm:pl-2">{hpCost}</span>
+          </>
+        </li>
+      )
+    }
+    {
       location && (
-        <li class="flex">
+        <li class="flex flex-col sm:flex-row mb-3">
           <>
             <span>Location:</span>
             <span class="flex-1 sm:pl-2">{location}</span>
@@ -104,7 +272,7 @@ const { attackPower, category, cost, description, effects, image, name, location
     }
     {
       passive && (
-      <li class="flex flex-col sm:flex-row mb-2">
+        <li class="flex flex-col sm:flex-row mb-3">
           <>
             <span>Passive:</span>
             <span class="flex-1 sm:pl-2">{passive}</span>
@@ -113,8 +281,100 @@ const { attackPower, category, cost, description, effects, image, name, location
       )
     }
     {
+      quote && (
+        <li class="flex flex-col sm:flex-row mb-3">
+          <>
+            <span>Quote:</span>
+            <span class="flex-1 sm:pl-2">{quote}</span>
+          </>
+        </li>
+      )
+    }
+    {
+      resistance && (
+        <li class="flex flex-col sm:flex-row mb-3">
+          <>
+            <span>Resistance:</span>
+            <ul class="flex-1 sm:pl-2">
+              {resistance.map((res: Amount) => (
+                <>
+                  <li>
+                    {res.name} {res.amount}
+                  </li>
+                </>
+              ))}
+            </ul>
+          </>
+        </li>
+      )
+    }
+    {
+      requires && (
+        <li class="flex flex-col sm:flex-row mb-3">
+          <>
+            <span>Requires:</span>
+            <ul class="flex-1 sm:pl-2">
+              {requires.map((req: Amount) => (
+                <>
+                  <li>
+                    {req.name} {req.amount}
+                  </li>
+                </>
+              ))}
+            </ul>
+          </>
+        </li>
+      )
+    }
+    {
+      requiredAttributes && (
+        <li class="flex flex-col sm:flex-row mb-3">
+          <>
+            <span>Required attributes:</span>
+            <ul class="flex-1 sm:pl-2">
+              {requiredAttributes.map((reqA: Amount) => (
+                <>
+                  <li>
+                    {reqA.name} {reqA.amount}
+                  </li>
+                </>
+              ))}
+            </ul>
+          </>
+        </li>
+      )
+    }
+    {
+      scalesWith && (
+        <li class="flex flex-col sm:flex-row mb-3">
+          <>
+            <span>Scales with:</span>
+            <ul class="flex-1 sm:pl-2">
+              {scalesWith.map((scale: Scaling) => (
+                <>
+                  <li>
+                    {scale.name} {scale.scaling}
+                  </li>
+                </>
+              ))}
+            </ul>
+          </>
+        </li>
+      )
+    }
+    {
+      skill && (
+        <li class="flex flex-col sm:flex-row mb-3">
+          <>
+            <span>Skill:</span>
+            <span class="flex-1 sm:pl-2">{skill}</span>
+          </>
+        </li>
+      )
+    }
+    {
       slots && (
-      <li class="flex flex-col sm:flex-row mb-2">
+        <li class="flex flex-col sm:flex-row mb-3">
           <>
             <span>Slots:</span>
             <span class="flex-1 sm:pl-2">{slots}</span>
@@ -124,7 +384,7 @@ const { attackPower, category, cost, description, effects, image, name, location
     }
     {
       type && (
-      <li class="flex flex-col sm:flex-row mb-2">
+        <li class="flex flex-col sm:flex-row mb-3">
           <>
             <span>Type:</span>
             <span class="flex-1 sm:pl-2">{type}</span>
@@ -134,7 +394,7 @@ const { attackPower, category, cost, description, effects, image, name, location
     }
     {
       weight && (
-      <li class="flex flex-col sm:flex-row mb-2">
+        <li class="flex flex-col sm:flex-row mb-3">
           <>
             <span>Weight:</span>
             <span class="flex-1 sm:pl-2">{weight}</span>
@@ -144,3 +404,4 @@ const { attackPower, category, cost, description, effects, image, name, location
     }
   </ul>
 </div>
+<PreviousButton />

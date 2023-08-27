@@ -1,7 +1,6 @@
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -69,7 +68,7 @@ export const Menu = () => (
   <Sheet>
     <SheetTrigger>Menu</SheetTrigger>
     <SheetContent>
-      <SheetHeader>
+      <SheetHeader className="sheet-header">
         <SheetTitle className="mt-10 mb-10">What you want to visit?</SheetTitle>
         {nav()}
       </SheetHeader>

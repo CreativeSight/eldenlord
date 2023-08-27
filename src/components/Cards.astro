@@ -1,5 +1,6 @@
 ---
 import Card from "./Card.astro";
+import PreviousButton from "./PreviousButton.astro";
 
 interface Props {
   data: [];
@@ -18,3 +19,4 @@ const { data, path } = Astro.props;
     ))
   }
 </section>
+<PreviousButton />
