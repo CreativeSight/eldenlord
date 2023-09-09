@@ -9,7 +9,5 @@ export default defineConfig({
   base: "/eldenlord/",
   root: "./",
   integrations: [tailwind(), react()],
-  experimental: {
-    assets: true,
-  },
+  experimental: {},
 });

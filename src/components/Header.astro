@@ -1,6 +1,7 @@
 ---
 import { Menu } from "./Menu";
 import { baseUrl } from "../consts";
+import Image from "astro/components/Image.astro";
 ---
 
 <header
@@ -8,7 +9,13 @@ import { baseUrl } from "../consts";
 >
   <figure class="flex flex-1">
     <a href=`${baseUrl}`
-      ><img src="/eldenlord/images/logo.webp" alt="Elden Ring logo" /></a
+      ><Image
+        src="/eldenlord/images/logo.webp"
+        alt="Elden Ring logo"
+        loading={"eager"}
+        height={32}
+        width={200}
+      /></a
     >
   </figure>
   <Menu client:load />
