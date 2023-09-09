@@ -23,7 +23,7 @@ interface Layout {
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-
+    <ViewTransitions />
     <GlobalStyles />
   </head>
   <body
@@ -41,6 +41,5 @@ interface Layout {
       <slot />
     </main>
     <Footer />
-    <ViewTransitions />
   </body>
 </html>
